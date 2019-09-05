@@ -4,6 +4,15 @@ import { findByTestAttr, checkProps} from '../test/testUtils.js'
 
 import GuessedWords from './GuessedWords';
 
-test('renders', () => {
-    
+const defaultProps = {
+    guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
+}
+
+const setup = (props = {}) => {
+    const setupProps = { ...defaultProps, ...props}
+    return shallow(<GuessedWords {...setupProps } />)
+}
+
+test('does not throw warning with expected props', () => {
+    checkProps(GuessedWords, defaultProps)
 })
