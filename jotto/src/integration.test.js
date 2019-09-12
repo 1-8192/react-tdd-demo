@@ -58,7 +58,8 @@ describe('guessedWord action dispatcher', () => {
                 guessedWords: [
                     ...guessedWords,
                     {
-                        guessedWord: unsuccesfulGuess
+                        guessedWord: unsuccesfulGuess,
+                        letterMatchCount: 3
                     }
                 ]
             }
