@@ -20,7 +20,7 @@ export class UnconnectedInput extends Component {
                 <button 
                     data-test="submit-button"
                     className="btn btn-primary mb-2"
-                    onClick = {()=> this.props.guessWord('train')}
+                    onClick = {()=> this.props.guessWord('')}
                     type="submit">
                     Submit 
                 </button>
