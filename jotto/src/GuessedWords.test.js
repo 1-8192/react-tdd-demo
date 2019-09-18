@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { findByTestAttr, checkProps} from '../test/testUtils.js'
 
 import GuessedWords from './GuessedWords';
-import { exportAllDeclaration } from '@babel/types';
+
 
 const defaultProps = {
     guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
