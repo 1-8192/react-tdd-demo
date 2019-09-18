@@ -55,4 +55,11 @@ describe('if there are words guessed', () => {
         const guessedWordsNodes = findByTestAttr(wrapper, 'guessed-word');
         expect(guessedWordsNodes.length).toBe(guessedWords.length)
     });
+    test('keeps track of the number of guesses', () => {
+        const guessWordIndexes = findByTestAttr(wrapper, 'guessed-word-index');
+        const indexTextSet = new Set(guessWordIndexes.map(wrapper => wrapper.text()));
+        const expectedSet = new Set (guessedWords.map((word, index) => (index + 1).toString()));
+
+        expect(indexTextSet).toEqual(expectedSet);
+    });
 })
