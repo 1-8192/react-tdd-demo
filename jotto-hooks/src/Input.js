@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Input ( { secretWord }) {
-    
+
     const [ currentGuess, setCurrentGuess ] = React.useState("");
 
     return (
@@ -13,10 +13,13 @@ function Input ( { secretWord }) {
                     className="mb-2 mx-sm-3"
                     type="text"
                     placeholder="enter guess"
+                    value={currentGuess}
+                    onChange={(event) => setCurrentGuess(event.target.value)}
                 />
                 <button 
                     data-test="submit-button"
-                    className="btn btn-primary mb-2">
+                    className="btn btn-primary mb-2"
+                    onClick={(event) => {event.preventDefault();}}>
                     Submit
                 </button>
             </form>
