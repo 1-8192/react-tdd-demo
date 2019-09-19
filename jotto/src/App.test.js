@@ -37,6 +37,12 @@ describe('redux properties', () => {
         const getSecretWordProp = wrapper.instance().props.getSecretWord;
         expect(getSecretWordProp).toBeInstanceOf(Function);
     });
+    // challenge 2
+    test('resetGame action creator is a props', () => {
+        const wrapper = setup();
+        const resetGameProps = wrapper.instance().props.resetGame;
+        expect(resetGameProps).toBeInstanceOf(Function);
+    });
 })
 
 test('getSecretWord runs on App mount', () => {
