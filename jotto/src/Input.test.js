@@ -31,6 +31,11 @@ describe('render', () => {
             const submitButton = findByTestAttr(wrapper, 'submit-button');
             expect(submitButton.length).toBe(1);
         });
+        //challenge 3
+        test('renders give up button', () => {
+            const giveUpButton = findByTestAttr(wrapper, 'give-up-button');
+            expect(giveUpButton.length).toBe(1);
+        });
     })
     describe('word has been guessed', () => {
         let wrapper;
@@ -66,6 +71,20 @@ describe('redux props', () => {
         const wrapper = setup();
         const guessWordProp = wrapper.instance().props.guessWord;
         expect(guessWordProp).toBeInstanceOf(Function);
+    });
+});
+
+//Challenge 3
+describe('give up button', () => {
+    test('calls give up prop on click', () => {
+        const giveUpMock = jest.fn();
+
+        const wrapper = shallow(<UnconnectedInput giveUp={giveUpMock} />);
+
+        const giveUpButton = findByTestAttr(wrapper, 'give-up-button');
+        giveUpButton.simulate('click');
+
+        expect(giveUpMock.mock.calls.length).toBe(1);
     });
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { guessWord } from './actions';
+import { guessWord, giveUp } from './actions';
 
 export class UnconnectedInput extends Component {
     state = {
@@ -19,6 +19,11 @@ export class UnconnectedInput extends Component {
         });
         };
     };
+
+    giveUpOnClick(event) {
+        event.preventDefault();
+        this.props.giveUp();
+    }
 
     render() {
 
@@ -41,6 +46,13 @@ export class UnconnectedInput extends Component {
                     type="submit">
                     Submit 
                 </button>
+                <button 
+                    data-test='give-up-button'
+                    className='btn btn-ptimary mb-2'
+                    onClick={(event)=> this.giveUpOnClick}
+                    type="submit">
+                    Give up
+                </button>
             </form>
         )
 
@@ -52,8 +64,8 @@ export class UnconnectedInput extends Component {
     }
 };
 
-const mapStateToProps = ({ success }) => {
-    return { success };
+const mapStateToProps = ({ success, giveUp }) => {
+    return { success, giveUp };
 }
 
-export default connect(mapStateToProps, { guessWord })(UnconnectedInput)
+export default connect(mapStateToProps, { guessWord, giveUp })(UnconnectedInput)
