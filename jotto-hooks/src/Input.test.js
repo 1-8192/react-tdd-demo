@@ -16,3 +16,18 @@ test('renders component', () => {
 test('does not throw warning with expected props', () => {
     checkProps(Input, { secretWord: 'party' } );
 });
+
+describe('state controlled field', () => {
+    test('state updates with input value on change', () => {
+        const setCurrentSetMock = jest.fn();
+        React.useState = jest.fn(() => ["", setCurrentSetMock]);
+
+        const wrapper = setup();
+        const inputBox = findByTestAttr(wrapper, 'input-box');
+
+        const mockEvent = { target: {value: 'train'}};
+        inputBox.simulate("change", mockEvent);
+        
+        expect(setCurrentSetMock).toHaveBeenCalledWith('train');
+    });
+});
