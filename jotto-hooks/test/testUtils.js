@@ -1,5 +1,4 @@
 import checkPropTypes from 'check-prop-types';
-import { createStore, applyMiddleware } from 'redux';
 
 /**
  * Return node(s) with the given data-test attribute.
