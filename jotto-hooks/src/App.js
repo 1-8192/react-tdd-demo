@@ -41,7 +41,7 @@ function App() {
   }
 
   return (
-    <div data-test="app-component">
+    <div className="container" data-test="app-component">
       <Input secretWord={state.secretWord} />
     </div>
   );
