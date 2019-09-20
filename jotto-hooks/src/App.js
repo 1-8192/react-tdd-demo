@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import hookActions from './actions/hookActions';
 
+import Input from './Input';
+
 //reducer to update state needed for hooks
 function reducer(state, action) {
   switch(action.type) {
@@ -27,7 +29,9 @@ function App() {
   )
 
   return (
-    <div data-test="app-component"/>
+    <div data-test="app-component">
+      <Input secretWord={state.secretWord} />
+    </div>
   );
 }
 
