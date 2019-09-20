@@ -1,10 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { findByTestAttr } from '../test/testUtils';
 import App from './App';
 
+import hookActions from './actions/hookActions';
+import { setPriority } from 'os';
+
+const mockGetSecretWord = jest.fn();
+
 const setup = () => {
-  return shallow(<App />);
+  mockGetSecretWord.mockClear();
+  hookActions.getSecretWord = mockGetSecretWord;
+
+  //enzyme may not support useEffect on shallow
+  return mount(<App />);
 }
 
 test('renders without crashing', () => {
@@ -12,3 +21,10 @@ test('renders without crashing', () => {
   const appComponent = findByTestAttr(wrapper, 'app-component')
   expect(appComponent.length).toBe(1);
 });
+
+describe('getSecretWord calls', () => {
+  test('gets called on app mount', () => {
+    setup();
+    expect(mockGetSecretWord).toHaveBeenCalled();
+  })
+})
