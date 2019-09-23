@@ -18,7 +18,9 @@ test('does not throw error warning with correct props', () => {
     checkProps(LanguagePicker, { setLanguage: jest.fn() });
 });
 test('renders nonzero language icons', () => {
-
+    const wrapper = setup();
+    const component = findByTestAttr(wrapper, 'language-icon');
+    expect(component.length).toBeGreaterThan(0);
 });
 test('calls setLanguage on click', () => {
 
