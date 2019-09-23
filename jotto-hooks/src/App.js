@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import hookActions from './actions/hookActions';
+import languageContext from './contexts/languageContext'
 
+import LanguagePicker from './LanguagePicker';
 import Input from './Input';
 
 //reducer to update state needed for hooks
@@ -9,6 +11,8 @@ function reducer(state, action) {
   switch(action.type) {
     case "setSecretWord":
       return { ...state, secretWord: action.payload}
+    case "setLanguage":
+      return { ...state, language: action.payload}
     default:
       throw new Error(`invalid action type: ${action.type}`);
   }
@@ -16,11 +20,16 @@ function reducer(state, action) {
 
 function App() {
   //hook that uses reducer above
-  const [state, dispatch] = React.useReducer(reducer, { secretWord: "" });
+  const [state, dispatch] = React.useReducer(reducer, 
+    { secretWord: null, language: 'en' }
+    );
 
   //function that dispatches in correct format
   const setSecretWord = (secretWord) => 
-    dispatch({ type: "SetSecretWord", payload: secretWord})
+    dispatch({ type: "SetSecretWord", payload: secretWord});
+
+  const setLanguage = (language) => 
+    dispatch({ type: "setLanguage", payload: language});
 
   //empty array makes this run once on mount, basically like ComponentDidMount
   React.useEffect(
@@ -42,7 +51,11 @@ function App() {
 
   return (
     <div className="container" data-test="app-component">
-      <Input secretWord={state.secretWord} />
+      <h1>Jotto</h1>
+      <languageContext.Provider value={state.language}>
+        <LanguagePicker setLanguage={setLanguage} />
+        <Input secretWord={state.secretWord} />
+      </languageContext.Provider>
     </div>
   );
 }
