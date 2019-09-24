@@ -12,14 +12,14 @@ export function useGuessedWords() {
     return context 
 }
 
-export function guessedWordsProvider(props) {
+export function GuessedWordsProvider(props) {
     //create state with default empty array
     const [guessedWords, setGuessedWords] = React.useState([])
 
     //useMemo stores function return in cache so it only updates when needed
     const value = React.memo(() => [guessedWords, setGuessedWords], [guessedWords])
 
-    return <guessedWords.Provider value={value} {...props} />
+    return <guessedWordsContext.Provider value={value} {...props} />
 }
 
-export default { guessedWordsProvider, useGuessedWords }
+export default { GuessedWordsProvider, useGuessedWords }

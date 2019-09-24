@@ -11,6 +11,7 @@ import stringsModule from './helpers/strings';
  * @returns {JSX.Element} - Rendered component (or null if `success` prop is false).
  */
 const Congrats = () => {
+  //getting only the first part of the success array
   const [success] = successContext.useSuccess();
   const language = React.useContext(languageContext);
 
