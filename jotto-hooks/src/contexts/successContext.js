@@ -1,10 +1,10 @@
 import React from 'react';
 
-const successContent = React.createContext();
+const successContext = React.createContext();
 
 function useSuccess() {
 
-    const context = React.useContext(successContent);
+    const context = React.useContext(successContext);
 
     if (!context) {
         throw new Error('useSuccess must be used in provider')
