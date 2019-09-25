@@ -4,6 +4,7 @@ import { findByTestAttr } from '../test/testUtils'
 
 import successContext from './contexts/successContext'
 import Input from './Input'
+import { exportAllDeclaration } from '@babel/types'
 
 //integration tests simulating a word guess
 
@@ -28,5 +29,28 @@ describe('word guesses', () => {
         [wrapper, inputBox, submitButton] = setup("party")
     })
 
-    
+    describe('correct guess', () => {
+        beforeEach(() => {
+            const mockEvent = { target: {value: 'party'} }
+            inputBox.simulate('change', mockEvent)
+            submitButton.simulate('click')
+        })
+        test('Input component contains no children', () => {
+            const inputComponent = findByTestAttr(wrapper, 'input-component')
+
+            expect(inputComponent.children().length).toBe(0)
+        })
+    })
+
+    describe('incorrect guess', () => {
+        beforeEach(() => {
+            const mockEvent = { target: {value: 'train'} }
+            inputBox.simulate('change', mockEvent)
+            submitButton.simulate('click')
+        })
+        test('Input box remains', () => {
+            expect(inputBox.exists()).toBe(true)
+        })
+    })
+
 })
