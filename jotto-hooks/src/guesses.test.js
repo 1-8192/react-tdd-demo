@@ -74,5 +74,19 @@ describe('word guesses', () => {
             })
         })
     })
+
+    describe('empty guessedWords', () => {
+        beforeEach(() => {
+            [ wrapper, inputBox, submitButton ] = setup([], 'party')
+        })
+        test('shows correct guesses after incorrect guess', () => {
+            const mockEvent = {target: {value: 'train'}}
+            inputBox.simulate('change', mockEvent)
+            submitButton.simulate('click')
+            const guessedWordsTableRows = findByTestAttr(wrapper, 'guessed-word')
+
+            expect(guessedWordsTableRows.length).toBe(1)
+        })
+    })
     
 })
